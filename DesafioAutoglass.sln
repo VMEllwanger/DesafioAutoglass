@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34526.213
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicos", "Servicos", "{A599EEA7-B73A-4295-BE2E-AE687582C5F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Produtos", "Produtos", "{A296C229-107A-48BE-8C46-A53E2E0488FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioAutoglass.Produtos.Dominio", "src\DesafioAutoglass.Produtos.Dominio\DesafioAutoglass.Produtos.Dominio.csproj", "{3323A2D0-FE54-4854-BE08-BB0AC3366890}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D51093AB-4909-42F2-9BDC-E659CDBAB411}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioAutoglass.Core", "src\DesafioAutoglass.Core\DesafioAutoglass.Core.csproj", "{DC46A3D3-2EB5-4DAE-B56F-C2DF4C8C5422}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3323A2D0-FE54-4854-BE08-BB0AC3366890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3323A2D0-FE54-4854-BE08-BB0AC3366890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3323A2D0-FE54-4854-BE08-BB0AC3366890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3323A2D0-FE54-4854-BE08-BB0AC3366890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC46A3D3-2EB5-4DAE-B56F-C2DF4C8C5422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC46A3D3-2EB5-4DAE-B56F-C2DF4C8C5422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC46A3D3-2EB5-4DAE-B56F-C2DF4C8C5422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC46A3D3-2EB5-4DAE-B56F-C2DF4C8C5422}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A296C229-107A-48BE-8C46-A53E2E0488FF} = {A599EEA7-B73A-4295-BE2E-AE687582C5F1}
+		{3323A2D0-FE54-4854-BE08-BB0AC3366890} = {A296C229-107A-48BE-8C46-A53E2E0488FF}
+		{D51093AB-4909-42F2-9BDC-E659CDBAB411} = {A599EEA7-B73A-4295-BE2E-AE687582C5F1}
+		{DC46A3D3-2EB5-4DAE-B56F-C2DF4C8C5422} = {D51093AB-4909-42F2-9BDC-E659CDBAB411}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83219E81-FA04-4A0B-AB25-D8BE2819BC80}
+	EndGlobalSection
+EndGlobal
