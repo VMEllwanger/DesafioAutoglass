@@ -1,11 +1,16 @@
 using DesafioAutoglass.Produtos.Data;
+using DesafioAutoglass.Produtos.Data.Repository;
+using DesafioAutoglass.Produtos.Domain.Interfaces;
+using DesafioAutoglass.Produtos.Domain.Servicos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace DesafioAutoglass.Produtos.API
 {
@@ -21,7 +26,7 @@ namespace DesafioAutoglass.Produtos.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -33,6 +38,13 @@ namespace DesafioAutoglass.Produtos.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
+
+            services.AddScoped<ProdutoContext>();
+            services.AddScoped<IProdutosRepository, ProdutoRepository>();
+
+            services.AddScoped<IProdutosServicos, ProdutosServicos>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
