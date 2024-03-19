@@ -1,3 +1,5 @@
+using DesafioAutoglass.Core.Interfaces;
+using DesafioAutoglass.Core.Notificacoes;
 using DesafioAutoglass.Produtos.Data;
 using DesafioAutoglass.Produtos.Data.Repository;
 using DesafioAutoglass.Produtos.Domain.Interfaces;
@@ -41,9 +43,12 @@ namespace DesafioAutoglass.Produtos.API
 
             services.AddScoped<ProdutoContext>();
             services.AddScoped<IProdutosRepository, ProdutoRepository>();
+            services.AddScoped<IFornecedorRepository, FornecedorRepository>();
 
             services.AddScoped<IProdutosServicos, ProdutosServicos>();
+            services.AddScoped<IFornecedorServico, FornecedorServico>();
 
+            services.AddScoped<INotificador, Notificador>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 

@@ -10,7 +10,7 @@ namespace DesafioAutoglass.Produtos.Data.Mappings
         {
             builder.HasKey(p => p.Id);
 
-            builder.Property(p => p.CodigoProduto)
+            builder.Property(p => p.Codigo)
                 .IsRequired()
                 .HasDefaultValueSql("NEXT VALUE FOR SequenciaCodigoProdutos");
 

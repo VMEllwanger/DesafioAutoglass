@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DesafioAutoglass.Produto.Data\DesafioAutoglass.Produtos.Data.csproj" />
-    <ProjectReference Include="..\DesafioAutoglass.Produtos.Domain\DesafioAutoglass.Produtos.Domain.csproj" />
+    <ProjectReference Include="..\DesafioAutoglass.Produto.Data\DesafioAutoglass.Estoque.Data.csproj" />
+    <ProjectReference Include="..\DesafioAutoglass.Produtos.Domain\DesafioAutoglass.Estoque.Domain.csproj" />
   </ItemGroup>
 
 </Project>

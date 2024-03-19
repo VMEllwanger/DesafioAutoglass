@@ -11,12 +11,28 @@ namespace DesafioAutoglass.Produtos.Domain.Entidade
         public DateTime DataCadastro { get; private set; }
         public ICollection<Produto> Produtos { get; set; }
 
-        protected Fornecedor() { }
+
         public Fornecedor(int codigo, string descricao, string cnpj)
         {
             Codigo = codigo;
             Descricao = descricao;
             CNPJ = cnpj;
+        }
+
+        public Fornecedor(string descricao, string cnpj)
+        {
+            Descricao = descricao;
+            CNPJ = cnpj;
+        }
+
+        public Fornecedor(int codigo)
+        {
+            Codigo = codigo;
+        }
+
+        public Fornecedor(Guid id, int codigo, string cNPJ, string descricao) : this(codigo, descricao, cNPJ)
+        {
+            Id = id;
         }
     }
 }

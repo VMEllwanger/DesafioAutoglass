@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DesafioAutoglass.Core\DesafioAutoglass.Core.csproj" />
-    <ProjectReference Include="..\DesafioAutoglass.Produtos.Domain\DesafioAutoglass.Produtos.Domain.csproj" />
+    <ProjectReference Include="..\DesafioAutoglass.Produtos.Domain\DesafioAutoglass.Estoque.Domain.csproj" />
   </ItemGroup>
 
 </Project>

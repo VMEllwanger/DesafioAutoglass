@@ -15,7 +15,6 @@ namespace DesafioAutoglass.Produtos.Data.Repository
         private readonly ProdutoContext _context;
         const int ITEM_POR_PAGINA = 25;
 
-
         public ProdutoRepository(ProdutoContext context)
         {
             _context = context;
@@ -32,46 +31,37 @@ namespace DesafioAutoglass.Produtos.Data.Repository
 
         public async Task<bool> AtualizarProdutoAsync(Produto produto)
         {
-            _context.Entry(produto).State = EntityState.Modified;
+            _context.Produtos.Update(produto);
             return await _context.Commit();
         }
 
         public async Task<Produto> ObterPorId(Guid Id)
         {
-            return await _context.Produtos.FirstOrDefaultAsync(p => p.Id == Id);
+            return await _context.Produtos.Include(p => p.Fornecedor).FirstOrDefaultAsync(p => p.Id == Id);
         }
 
         public async Task<Produto> ObterPorCodigo(int codigo)
         {
-            return await _context.Produtos.FirstOrDefaultAsync(p => p.CodigoProduto == codigo);
-        }
-
-        public async Task<IEnumerable<Produto>> ObterTodos()
-        {
-            return await _context.Produtos.AsNoTracking().ToListAsync();
+            return await _context.Produtos.Include(p => p.Fornecedor).FirstOrDefaultAsync(p => p.Codigo == codigo);
         }
 
         public async Task<IEnumerable<Produto>> ObterTodos(int paginaAtual)
         {
-            var query = _context.Produtos.AsQueryable();
+            var query = _context.Produtos.Include(p => p.Fornecedor).AsQueryable();
 
             int indiceInicial = (paginaAtual - 1) * ITEM_POR_PAGINA;
 
-            var produtosPaginados = query.Skip(indiceInicial).Take(ITEM_POR_PAGINA);
-
-            return await Task.FromResult(produtosPaginados.ToList());
+            return await query.Skip(indiceInicial).Take(ITEM_POR_PAGINA).ToListAsync();
         }
 
-        public async Task<IEnumerable<Produto>> ObterProdutodPorArgumento(Expression<Func<Produto, bool>> predicate, int paginaAtual)
+        public async Task<IEnumerable<Produto>> ObterProdutosPorArgumento(Expression<Func<Produto, bool>> predicate, int paginaAtual)
         {
-            var query = _context.Produtos.AsQueryable();
-            query.Where(predicate);
+            var query = _context.Produtos.Where(predicate).AsQueryable().Include(p => p.Fornecedor);
+
 
             int indiceInicial = (paginaAtual - 1) * ITEM_POR_PAGINA;
 
-            var produtosPaginados = await query.Skip(indiceInicial).Take(ITEM_POR_PAGINA).ToListAsync();
-
-            return produtosPaginados;
+            return await query.Skip(indiceInicial).Take(ITEM_POR_PAGINA).ToListAsync();
         }
 
         public void Dispose()

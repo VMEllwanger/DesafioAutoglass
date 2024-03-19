@@ -12,10 +12,9 @@ namespace DesafioAutoglass.Produtos.Domain.Interfaces
         Task<Produto> ObterPorCodigo(int codigoProduto);
         Task<Produto> ObterPorId(Guid Id);
         Task<IEnumerable<Produto>> ObterTodos(int paginaAtual);
-        Task<IEnumerable<Produto>> ObterProdutodPorArgumento(Expression<Func<Produto, bool>> predicate, int paginaAtual);
+        Task<IEnumerable<Produto>> ObterProdutosPorArgumento(Expression<Func<Produto, bool>> predicate, int paginaAtual);
 
         Task<Produto> AdicionarProdutoAsync(Produto produto);
         Task<bool> AtualizarProdutoAsync(Produto produto);
-
     }
 }

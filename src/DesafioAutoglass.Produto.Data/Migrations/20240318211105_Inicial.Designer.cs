@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioAutoglass.Produtos.Data.Migrations
 {
     [DbContext(typeof(ProdutoContext))]
-    [Migration("20240317135714_Inicial")]
+    [Migration("20240318211105_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,9 @@ namespace DesafioAutoglass.Produtos.Data.Migrations
                         .HasDefaultValueSql("NEXT VALUE FOR SequenciaCodigoFornecedor");
 
                     b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -52,6 +54,32 @@ namespace DesafioAutoglass.Produtos.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Fornecedores");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("de5f43de-21d0-4b88-ac0a-0ab368d2f8aa"),
+                            CNPJ = "60585144000189",
+                            Codigo = 0,
+                            DataCadastro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "Emporio10 ME"
+                        },
+                        new
+                        {
+                            Id = new Guid("3f4e05ba-a16a-4232-98e6-b6f89575f58a"),
+                            CNPJ = "69223161000140",
+                            Codigo = 0,
+                            DataCadastro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "Pães e Doces Ltda"
+                        },
+                        new
+                        {
+                            Id = new Guid("96f1fb45-3e72-4f42-8032-0f9441e6f5db"),
+                            CNPJ = "49526608000143",
+                            Codigo = 0,
+                            DataCadastro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "Massa e Borda Pizzaria ME"
+                        });
                 });
 
             modelBuilder.Entity("DesafioAutoglass.Produtos.Domain.Entidade.Produto", b =>
@@ -60,13 +88,7 @@ namespace DesafioAutoglass.Produtos.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CNPJFornecedor")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CodigoFornecedor")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<int>("CodigoProduto")
+                    b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValueSql("NEXT VALUE FOR SequenciaCodigoProdutos");
@@ -83,9 +105,6 @@ namespace DesafioAutoglass.Produtos.Data.Migrations
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("varchar(500)");
-
-                    b.Property<string>("DescricaoFornecedor")
-                        .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("FornecedorId")
                         .HasColumnType("uniqueidentifier");

@@ -8,6 +8,8 @@ namespace DesafioAutoglass.Produtos.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Fornecedor> builder)
         {
+            builder.ToTable("Fornecedores");
+
             builder.HasKey(p => p.Id);
 
             builder.Property(p => p.Codigo)
@@ -22,11 +24,20 @@ namespace DesafioAutoglass.Produtos.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(18)");
 
+            builder.Property(p => p.DataCadastro)
+                .IsRequired()
+                .HasDefaultValueSql("GETDATE()")
+                .HasColumnType("Date");
+
             builder.HasMany(c => c.Produtos)
               .WithOne(p => p.Fornecedor)
               .HasForeignKey(p => p.FornecedorId);
 
-            builder.ToTable("Fornecedores");
+            builder.HasData(
+                new Fornecedor("Emporio10 ME", "60585144000189") { },
+                new Fornecedor("Pães e Doces Ltda", "69223161000140") { },
+                new Fornecedor("Massa e Borda Pizzaria ME", "49526608000143") { }
+                );
         }
     }
 }
